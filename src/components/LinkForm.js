@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const LinkForm = () => {
+export const LinkForm = (props) => {
   // state
   const initialStateValues = {
     url: "",
@@ -16,7 +16,8 @@ export const LinkForm = () => {
   };
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(values);
+    props.addOrEditLink(values);
+    setValues({ ...initialStateValues });
   };
 
   // html
@@ -33,6 +34,7 @@ export const LinkForm = () => {
           name="url"
           id=""
           onChange={handleInputchange}
+          value={values.url}
         />
       </div>
       <div className="form-group input-group">
@@ -46,6 +48,7 @@ export const LinkForm = () => {
           name="name"
           id=""
           onChange={handleInputchange}
+          value={values.name}
         />
       </div>
       <div className="form-group">
@@ -55,6 +58,7 @@ export const LinkForm = () => {
           placeholder="write a website description, buddy"
           rows="3"
           onChange={handleInputchange}
+          value={values.description}
         ></textarea>
       </div>
       <button className="btn btn-primary btn-block">Save</button>
